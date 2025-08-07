@@ -1,0 +1,30 @@
+{
+  "name": "testchargue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "serve": "node dist/server.js",
+    "test:autocannon": "node scripts/autocannon-register.mjs",
+    "test:signup": "artillery run artillery/signup-test.yml",
+    "generate:csv": "node scripts/generate-users.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.0",
+    "artillery": "^2.0.23",
+    "autocannon": "^8.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

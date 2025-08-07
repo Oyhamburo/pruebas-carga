@@ -1,0 +1,44 @@
+config:
+  target: "http://localhost:3055/api"
+  phases:
+    - duration: 10
+      arrivalRate: 10
+  payload:
+    path: "users.csv"
+    fields:
+      - email
+      - password
+      - name
+      - lastname
+      - uuid
+      - dni
+      - phone
+      - occupation
+      - instagram
+      - user_location
+      - birth_date
+      - notification_token
+  processor: "log-response.js"
+  defaults:
+    headers:
+      content-type: "application/json"
+
+scenarios:
+  - flow:
+      - post:
+          url: "/users/signup"
+          beforeRequest: "normalizeTypes"
+          json:
+            email: "{{ email }}"
+            password: "{{ password }}"
+            name: "{{ name }}"
+            lastname: "{{ lastname }}"
+            uuid: "{{ uuid }}"
+            dni: "{{ dni }}"
+            phone: "{{ phone }}"
+            occupation: "{{ occupation }}"
+            instagram: "{{ instagram }}"
+            user_location: "{{ user_location }}"
+            birth_date: "{{ birth_date }}"
+            notification_token: "{{ notification_token }}"
+          afterResponse: "logResponse"
