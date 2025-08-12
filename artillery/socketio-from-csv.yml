@@ -1,0 +1,38 @@
+config:
+  target: "http://localhost:3031?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTUwMDc1NzIsImlzcyI6InR1LWJhY2tlbmQiLCJhdWQiOiJ0dS1mcm9udGVuZCIsImV4cCI6MTc1NTAxMTE3Mn0.R1_IpQHMJxX1o87zVXpf_q1l3hNerNhm7jAOjOvNq8k"
+  phases:
+    - duration: 5
+      arrivalRate: 2
+      name: "smoke"
+    - duration: 30
+      arrivalRate: 10
+      name: "estable"
+  engines:
+    socketio:
+      path: "/socket.io"           # tu server usa /socket.io (lo vi en tus logs)
+  payload:
+    path: ../csv/tokens.csv
+    skipHeader: true
+    fields: [token]
+    order: sequence
+
+scenarios:
+  - name: "Conectar con token (auth) y emitir"
+    engine: socketio
+    flow:
+      - log: "Token usado: {{ token }}"
+      - connect:
+          namespace: "/channels"    # ¡clave!
+          url: "http://localhost:3031/channels?token={{ token }}&lastMessageTimeStamp={{ $timestamp }}"
+          auth:
+            token: "{{ token }}"    # el bridge lo copiará a query.token
+            lastMessageTimeStamp: "{{ $timestamp }}"
+          transport: "websocket"    # fuerza WS (evita quedarse en polling)
+      - think: 1
+      - emit:
+          channel: "mensaje"
+          data: { texto: "hola" }
+      - think: 1
+      - emit:
+          channel: "mensaje"
+          data: { texto: "chau" }

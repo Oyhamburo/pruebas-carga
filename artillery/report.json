@@ -1,0 +1,36 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.Conectar con token desde CSV": 1,
+      "vusers.created": 1,
+      "errors.Error: JWT token no provided..": 1,
+      "vusers.failed": 1
+    },
+    "rates": {},
+    "firstCounterAt": 1755010823130,
+    "lastCounterAt": 1755010823167,
+    "firstMetricAt": 1755010823130,
+    "lastMetricAt": 1755010823167,
+    "period": 1755010820000,
+    "summaries": {},
+    "histograms": {}
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.Conectar con token desde CSV": 1,
+        "vusers.created": 1,
+        "errors.Error: JWT token no provided..": 1,
+        "vusers.failed": 1
+      },
+      "rates": {},
+      "firstCounterAt": 1755010823130,
+      "lastCounterAt": 1755010823167,
+      "firstMetricAt": 1755010823130,
+      "lastMetricAt": 1755010823167,
+      "period": "1755010820000",
+      "summaries": {},
+      "histograms": {}
+    }
+  ]
+}

@@ -1,8 +1,45 @@
 config:
-  target: "http://localhost:3055/api"
+  target: "http://localhost:3090/api"
   phases:
-    - duration: 10
-      arrivalRate: 10
+      # Bloque 1: ~2.000 requests
+      - duration: 10
+        arrivalRate: 20     # warmup
+      - duration: 30
+        arrivalRate: 50     # 10*20 + 30*50 = 200 + 1500 = 1700 aprox
+      - duration: 6
+        arrivalRate: 50     # +300 -> ~2.000
+
+      # Bloque 2
+      - duration: 10
+        arrivalRate: 20
+      - duration: 30
+        arrivalRate: 50
+      - duration: 6
+        arrivalRate: 50
+
+      # Bloque 3
+      - duration: 10
+        arrivalRate: 20
+      - duration: 30
+        arrivalRate: 50
+      - duration: 6
+        arrivalRate: 50
+
+      # Bloque 4
+      - duration: 10
+        arrivalRate: 20
+      - duration: 30
+        arrivalRate: 50
+      - duration: 6
+        arrivalRate: 50
+
+      # Bloque 5
+      - duration: 10
+        arrivalRate: 20
+      - duration: 30
+        arrivalRate: 50
+      - duration: 6
+        arrivalRate: 50
   payload:
     path: "users.csv"
     fields:
@@ -18,6 +55,8 @@ config:
       - user_location
       - birth_date
       - notification_token
+    order: sequence   
+    skipHeader: true  
   processor: "log-response.js"
   defaults:
     headers:

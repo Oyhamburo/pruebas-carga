@@ -9,7 +9,11 @@
     "serve": "node dist/server.js",
     "test:autocannon": "node scripts/autocannon-register.mjs",
     "test:signup": "artillery run artillery/signup-test.yml",
-    "generate:csv": "node scripts/generate-users.mjs"
+    "generate:csv": "node scripts/generate-users.mjs",
+    "load:socket": "artillery run artillery/socketio-from-csv.yml --output artillery/report.json",
+
+    "test:sio:single": "node scripts/test-sio.js",
+    "test:sio:multi": "node scripts/test-sio.js --file ./tokens.csv --channel COMUNIDAD --clients 100 --batch 25 --gap 250"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +28,8 @@
     "@types/node": "^24.2.0",
     "artillery": "^2.0.23",
     "autocannon": "^8.0.0",
+    "cross-env": "^10.0.0",
+    "jsonwebtoken": "^9.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
