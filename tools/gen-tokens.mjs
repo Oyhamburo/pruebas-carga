@@ -10,7 +10,7 @@ const { sign } = jwtPkg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
-const N                 = Number.parseInt(process.argv[2] || '100', 10);
+const N                 = Number.parseInt(process.argv[2] || '10000', 10);
 const START_ID          = Number.parseInt(process.env.START_ID || '99900000', 10);
 const EMAIL_DOMAIN      = process.env.EMAIL_DOMAIN || 'nocitoconstructora.com.ar';
 const JWT_SECRET        = process.env.JWT_SECRET || 'MARMOTA';

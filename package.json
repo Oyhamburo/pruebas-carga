@@ -13,7 +13,7 @@
     "load:socket": "artillery run artillery/socketio-from-csv.yml --output artillery/report.json",
 
     "test:sio:single": "node scripts/test-sio.js",
-    "test:sio:multi": "node scripts/test-sio.js --file ./tokens.csv --channel COMUNIDAD --clients 100 --batch 25 --gap 250"
+    "test:sio:multi": "node scripts/test-sio.js --file ./tokens.csv --channel COMUNIDAD"
   },
   "keywords": [],
   "author": "",
